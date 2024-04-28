@@ -173,7 +173,11 @@ if tabs == 'Dashboard':
             data[k] = min_max
         patent_data = pd.DataFrame(data, index=[0])
         # st.dataframe(patent_data,use_container_width=True)
-        if st.button("Predict Result"):
+        ca,cb,cc = st.columns([0.5,0.2,0.4])
+        predict = st.empty()
+        with cb:
+            predict = st.button("Predict Result")
+        if predict:
             y_pred_loaded = loaded_model.predict(patent_data)
             cp,cq,cr=st.columns([0.4,0.7,0.2])
             with cq:
